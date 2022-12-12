@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:270717/wikiDB", { userNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:270717/wikiDB", { userNewUrlParser: true });
 
 const articleSchema = {
     title: String,
