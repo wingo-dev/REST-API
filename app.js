@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("public"));
 
-// mongoose.connect("mongodb://localhost:270717/wikiDB", { userNewUrlParser: true });
-
-const articleSchema = {
+mongoose.connect("mongodb://localhost:27017/wikiDB", { useNewUrlParser: true });
+// mongoose.set('strictQuery', true);
+const articles = {
     title: String,
     content: String
 }
