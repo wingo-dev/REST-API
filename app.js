@@ -141,7 +141,7 @@ app.route("/articles/:articleTitle")
             { title: req.params.articleTitle },
             function (err) {
                 if (!err) {
-                    res.send("deleted successfully!")
+                    res.send("successfully deleted the corresponding record!")
                 } else {
                     res.send(err);
                 }
