@@ -98,6 +98,57 @@ app.route("/articles")
 //     });
 // });
 
+// Article A specific methods
+app.route("/articles/:articleTitle")
+    .get(function (req, res) {
+        Article.findOne({ "title": req.params.articleTitle }, function (err, foundArticle) {
+            if (foundArticle) {
+                res.send(foundArticle);
+            } else {
+                res.send("did not find a matching article.");
+            }
+        });
+    })
+    .put(function (req, res) {
+        Article.update(
+            { title: req.params.articleTitle },
+            { title: req.body.title, content: req.body.content },
+            { overwrite: true },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully updated!")
+                } else {
+                    res.send(err);
+                }
+            }
+        )
+    })
+    .patch(function (res, req) {
+        Article.update(
+            { title: req.params.articleTitle },
+            { $set: req.body },
+            function (err) {
+                if (!err) {
+                    res.send("Successfully patched!");
+                } else {
+                    res.send(err);
+                }
+            }
+        )
+    })
+    .delete(function (req, res) {
+        Article.deleteOne(
+            { title: req.params.articleTitle },
+            function (err) {
+                if (!err) {
+                    res.send("deleted successfully!")
+                } else {
+                    res.send(err);
+                }
+            }
+        )
+    });
+
 app.listen(3000, function () {
     console.log("Server started on port 3000");
 });
